@@ -38,7 +38,7 @@ SecurityEvent
 
 **Results:** Three recon commands detected — `whoami`, `whoami.exe`, and `ipconfig /all` — all executed by `Philip Price` within seconds of each other.
 
-![Recon Detection](screenshots/07_kql-recon-commands-whoami-ipconfig.png)
+![Recon Detection](Screenshots/07_kql-recon-commands-whoami-ipconfig.png)
 
 ---
 
@@ -57,7 +57,7 @@ SecurityEvent
 
 **Results:** One hit — `WindowsPowerShell` launched with `-EncodedCommand` flag by `Philip Price` on `DESKTOP-JL0Q094`.
 
-![Encoded Command Detection](screenshots/08_kql-powershell-encodedcommand-detected.png)
+![Encoded Command Detection](Screenshots/08_kql-powershell-encodedcommand-detected.png)
 
 ---
 
@@ -76,7 +76,7 @@ SecurityEvent
 
 **Results:** Confirmed `powershell.exe -ep bypass` executed by `Philip Price`.
 
-![EP Bypass Detection](screenshots/09_kql-execution-policy-bypass-detected.png)
+![EP Bypass Detection](Screenshots/09_kql-execution-policy-bypass-detected.png)
 
 ---
 
@@ -95,7 +95,7 @@ SecurityEvent
 
 **Results:** `Philip Price` on `DESKTOP-JL0Q094` recorded 6 failed attempts within a 5-minute window.
 
-![Failed Login Query](screenshots/10_kql-failed-logins-event4625-grouped.png)
+![Failed Login Query](Screenshots/10_kql-failed-logins-event4625-grouped.png)
 
 ---
 
@@ -111,7 +111,7 @@ SecurityEvent
 | sort by TimeGenerated desc
 ```
 
-![All Process Creation](screenshots/11_kql-all-process-creation-with-cmdline.png)
+![All Process Creation](Screenshots/11_kql-all-process-creation-with-cmdline.png)
 
 ---
 
@@ -126,11 +126,11 @@ Two scheduled analytics rules were created in Microsoft Sentinel to automaticall
 
 **Initial rule deployment (1 rule):**
 
-![First Alert Rule](screenshots/02_analytics-rule-powershell-encoded-high.png)
+![First Alert Rule](Screenshots/02_analytics-rule-powershell-encoded-high.png)
 
 **After adding the failed login rule (2 rules active):**
 
-![Both Alert Rules](screenshots/03_analytics-rules-both-active.png)
+![Both Alert Rules](Screenshots/03_analytics-rules-both-active.png)
 
 ---
 
@@ -139,12 +139,12 @@ Two scheduled analytics rules were created in Microsoft Sentinel to automaticall
 ### Early Incidents (PowerShell Only)
 The first two incidents were both **High** severity — `Suspicious Encoded PowerShell Execution` — generated automatically by the analytics rule.
 
-![Initial Incidents](screenshots/04_incidents-initial-powershell-alerts.png)
+![Initial Incidents](Screenshots/04_incidents-initial-powershell-alerts.png)
 
 ### Full Incident Queue (27 Open)
 After both rules ran over time, the incident queue grew to **27 open incidents**: 12 High (PowerShell) and 15 Medium (Failed Logins).
 
-![Full Incident List](screenshots/05_incidents-full-list-27-open.png)
+![Full Incident List](Screenshots/05_incidents-full-list-27-open.png)
 
 ---
 
@@ -155,28 +155,28 @@ A custom **SOC Threat Monitoring Dashboard** workbook was built in Sentinel to v
 ### Failed Login Attempts Over Time
 28 total failed logins visualized in a time-series chart. Peak observed at ~7:00 PM.
 
-![Failed Login Workbook](screenshots/12_workbook-failed-logins-over-time.png)
+![Failed Login Workbook](Screenshots/12_workbook-failed-logins-over-time.png)
 
 ### PowerShell Execution Activity
 30 total PowerShell executions plotted in a bar chart over several hours, showing sustained activity.
 
-![PowerShell Exec Workbook](screenshots/13_workbook-powershell-execution-activity.png)
+![PowerShell Exec Workbook](Screenshots/13_workbook-powershell-execution-activity.png)
 
 ### Top Executed Commands
 Most frequent process creations ranked by count, dominated by `conhost.exe 0xffffffff -ForceV1` (195 executions) and `RuntimeBroker.exe -Embedding` (79).
 
-![Top Commands Workbook](screenshots/14_workbook-top-executed-commands.png)
+![Top Commands Workbook](Screenshots/14_workbook-top-executed-commands.png)
 
 ### Full Dashboard Overview
 Combined view showing all three panels in the SOC dashboard.
 
-![Full Dashboard](screenshots/01_soc-threat-monitoring-dashboard.png)
+![Full Dashboard](Screenshots/01_soc-threat-monitoring-dashboard.png)
 
 ---
 
 ## 🛠️ KQL Queries Reference
 
-All detection queries used in this lab are saved in the `/queries` folder:
+All detection queries used in this lab are saved in the `/KQL-Queries` folder:
 
 - `recon_detection.kql` — Detects whoami, ipconfig, net user, net localgroup
 - `encoded_command_detection.kql` — Detects PowerShell `-EncodedCommand` flag
