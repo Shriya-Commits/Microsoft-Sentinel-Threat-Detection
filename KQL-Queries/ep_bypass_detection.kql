@@ -1,0 +1,5 @@
+SecurityEvent
+| where EventID == 4688
+| where CommandLine has "-ep bypass"
+| project TimeGenerated, Computer, Account, NewProcessName, CommandLine
+| sort by TimeGenerated desc
